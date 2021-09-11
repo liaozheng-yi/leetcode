@@ -60,22 +60,38 @@ var maxProfit = function(prices) {
  * @param {number} k
  * @return {void} Do not return anything, modify nums in-place instead.
  */
-const gcd = (x, y) => y ? gcd(y, x % y) : x;
-var rotate = function(nums, k) {
-    const n = nums.length;
-    k = k % n;
-    let count = gcd(k, n);
-    for (let start = 0; start < count; ++start) {
-        let current = start;
-        let prev = nums[start];
-        do {
-            const next = (current + k) % n;
-            const temp = nums[next];
-            nums[next] = prev;
-            prev = temp;
-            current = next;
-        } while (start !== current);
+// const gcd = (x, y) => y ? gcd(y, x % y) : x;
+// var rotate = function(nums, k) {
+//     const n = nums.length;
+//     k = k % n;
+//     let count = gcd(k, n);
+//     for (let start = 0; start < count; ++start) {
+//         let current = start;
+//         let prev = nums[start];
+//         do {
+//             const next = (current + k) % n;
+//             const temp = nums[next];
+//             nums[next] = prev;
+//             prev = temp;
+//             current = next;
+//         } while (start !== current);
+//     }
+// };
+function reverse(nums, start, end) {
+    let temp = nums[start];
+    while (start < end) {
+        nums[start] = nums[end];
+        nums[end] = temp;
+        temp = nums[start+1];
+        start++;
+        end--;
     }
+}
+var rotate = function (nums, k) {
+    k %= nums.length;
+    reverse(nums, 0, nums.length - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, nums.length - 1)
 };
 ```
 
