@@ -237,3 +237,39 @@ var twoSum = function (nums, target) {
 };
 ```
 
+### 有效的数独
+
+请你判断一个 9x9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
+
+数字 1-9 在每一行只能出现一次。
+数字 1-9 在每一列只能出现一次。
+数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+数独部分空格内已填入了字符串型数字，空白格用 '.' 表示。
+
+```javascript
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function (board) {
+  let row = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+  let column = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+  let box = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+  for (let y = 0; y < 9; y++) {
+    for (let x = 0; x < 9; x++) {
+      const num = board[y][x] + ''
+      if (num != '.') {
+        if (row[y][num] || column[x][num] || box[divisionInteger(x, y)][num]) {
+          return false
+        }
+        row[y][num] = column[x][num] = box[divisionInteger(x, y)][num] = num
+      }
+    }
+  }
+  return true
+};
+function divisionInteger(x, y) {
+  return parseInt(y / 3) * 3 + parseInt(x / 3)
+}
+```
+
