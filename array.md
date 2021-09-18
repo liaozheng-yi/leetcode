@@ -273,3 +273,29 @@ function divisionInteger(x, y) {
 }
 ```
 
+### 旋转图像
+
+给定一个 n × n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转 90 度。
+
+你必须在 原地 旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要 使用另一个矩阵来旋转图像。
+
+```javascript
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+var rotate = function (matrix) {
+    const xy_s = new Map()
+    const len = matrix.length - 1
+    matrix.forEach((y, yIndex) => {
+        y.forEach((x, xIndex) => {
+            xy_s.set(xIndex + '_' + yIndex, x)
+        })
+    })
+    xy_s.forEach((value, key) => {
+        const [x, y] = key.split('_')
+        matrix[x][y] = xy_s.get(x + '_' + (len - y))
+
+    })
+};
+```

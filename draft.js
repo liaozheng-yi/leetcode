@@ -1,22 +1,20 @@
-let nums = [9,1,2,3];
+let nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
-var plusOne = function (digits) {
-    for (let i = digits.length - 1; i >= 0; i--) {
-        // console.log(i)
-        // if (i == -1) {
-        //     digits.unshift(1);
-        //     return digits;
-        // }
-        if (digits[i] < 9) {
-            digits[i]++;
-            return digits;
-        } else {
-            digits[i] = 0;
-        }
-    }
-    digits.unshift(1);
-    return digits;
+var rotate = function (matrix) {
+    const xy_s = new Map()
+    const len = matrix.length - 1
+    matrix.forEach((y, yIndex) => {
+        y.forEach((x, xIndex) => {
+            xy_s.set(xIndex + '_' + yIndex, x)
+        })
+    })
+    xy_s.forEach((value, key) => {
+        const [x, y] = key.split('_')
+        matrix[x][y] = xy_s.get(x + '_' + (len - y))
+
+    })
 };
-let res = plusOne(nums);
 
-console.log(res);
+rotate(nums)
+//[[7,4,1],[8,5,2],[9,6,3]]
+console.log(nums);
