@@ -1,20 +1,23 @@
-let nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+let str = "aabb";
 
-var rotate = function (matrix) {
-    const xy_s = new Map()
-    const len = matrix.length - 1
-    matrix.forEach((y, yIndex) => {
-        y.forEach((x, xIndex) => {
-            xy_s.set(xIndex + '_' + yIndex, x)
-        })
-    })
-    xy_s.forEach((value, key) => {
-        const [x, y] = key.split('_')
-        matrix[x][y] = xy_s.get(x + '_' + (len - y))
 
-    })
+var firstUniqChar = function (s) {
+    const single = new Map()
+    for (let i = 0; i < s.length; i++) {
+        if (single.has(s.charAt(i))) {
+            single.set(s.charAt(i), single.get(s.charAt(i)) + 1)
+        } else {
+            console.log(s.charAt(i))
+            single.set(s.charAt(i), 1)
+        }
+    }
+    console.log(single)
+    for (let i = 0; i < s.length; i++) {
+        if (single.get(s.charAt(i)) == 1) {
+            return i
+        }
+    }
+    return -1
 };
 
-rotate(nums)
-//[[7,4,1],[8,5,2],[9,6,3]]
-console.log(nums);
+console.log(firstUniqChar(str));
