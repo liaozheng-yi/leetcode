@@ -178,3 +178,44 @@ var myAtoi = function (s) {
   return parseInt(pre + num)
 };
 ````
+
+### 实现 strStr()
+
+给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回  -1 。
+
+```javascript
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+//如下为暴力解法
+function isSame(me,him,hisIndex) {
+  for (let m = 0; m < me.length; m++) {
+     if (me[m] != him[hisIndex + m]) {
+       return false
+     }
+  }
+  return true
+}
+var strStr = function (haystack, needle) {
+  if (needle == '') {
+    return 0
+  }
+  if (needle.length > haystack.length) {
+    return -1
+  }
+  let h = 0;
+  while (h < haystack.length) {
+    if (haystack[h] == needle[0]) {
+      if (isSame(needle,haystack, h)) {
+        return h
+      }
+    }
+    h++
+  }
+  return -1
+};
+
+```
+
