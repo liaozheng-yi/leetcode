@@ -1,32 +1,36 @@
-// let str = "-91283472332";
-var str = '21474836460';
-var myAtoi = function (s) {
-    s = s.trimStart();
-    console.log('s', s);
-    var pre = "";
-    if (/\-|\+/.test(s.charAt(0))) {
-        pre = s.charAt(0);
+var str = '5'
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var countAndSay = function (n) {
+    if (parseInt(n) === 1) {
+        return '1'
     }
-    else if (/[a-z]/i.test(s.charAt(0))) {
-        return 0;
+    let res = "11"
+    let no = 2
+    while (no < parseInt(n)) {
+        res = readNum(res)
+        no ++
     }
-    var num = 0;
-    for (var i = pre ? 1 : 0; i < s.length; i++) {
-        if (/\d/.test(s.charAt(i))) {
-            num = num * 10 + parseInt(s.charAt(i));
-        }
-        else {
-            break;
-        }
-    }
-    if (num >= Math.pow(2, 31)) {
-        num = Math.pow(2, 31);
-        if (pre !== '-') {
-            num--;
-        }
-    }
-    console.log(pre, num);
-    return parseInt(pre + num);
+    return res
 };
-var res = myAtoi(str);
-console.log('res', res);
+function readNum(str) {
+    let res = ''
+    let i = 0
+    while (i < str.length) {
+        let n = 1
+        console.log(str.charAt(i) !== str.charAt(i + n))
+        while (str.charAt(i) == str.charAt(i + n) && i + n < str.length) {
+            n++
+        }
+        res += n + str.charAt(i)
+        console.log('res', res)
+        i += n
+    }
+    return res
+}
+
+let res = countAndSay(str)
+// let res = readNum('11')
+console.log(res)

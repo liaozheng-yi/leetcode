@@ -6,28 +6,28 @@
 
 你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。
 
-````javascript
+```javascript
 /**
  * @param {character[]} s
  * @return {void} Do not return anything, modify s in-place instead.
  */
-var reverseString = function(s) {
+var reverseString = function (s) {
   let tem = ''
   let len = s.length
-  for(let before = 0, after = len -1; before<len/2; before++,after--){
-    if(before==after)return
+  for (let before = 0, after = len - 1; before < len / 2; before++, after--) {
+    if (before == after) return
     tem = s[before]
     s[before] = s[after]
     s[after] = tem
   }
-};
-````
+}
+```
 
 ### 整数反转
 
 给你一个 32 位的有符号整数 x ，返回将 x 中的数字部分反转后的结果。
 
-如果反转后整数超过 32 位的有符号整数的范围 [−231,  231 − 1] ，就返回 0。
+如果反转后整数超过 32 位的有符号整数的范围 [−231, 231 − 1] ，就返回 0。
 
 假设环境不允许存储 64 位整数（有符号或无符号）。
 
@@ -43,19 +43,19 @@ var reverse = function (x) {
     x = ~~(x / 10)
     rev = rev * 10 + remainder
   }
-  if (rev < Math.pow(-2, 31) || rev > (Math.pow(2, 31) - 1)) {
+  if (rev < Math.pow(-2, 31) || rev > Math.pow(2, 31) - 1) {
     return 0
   } else {
     return rev
   }
-};
+}
 ```
 
 ### 字符串中的第一个唯一字符
 
 给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
 
-````javascript
+```javascript
 /**
  * @param {string} s
  * @return {number}
@@ -75,8 +75,8 @@ var firstUniqChar = function (s) {
     }
   }
   return -1
-};
-````
+}
+```
 
 ### 有效的字母异位词
 
@@ -84,7 +84,7 @@ var firstUniqChar = function (s) {
 
 注意：若 s 和 t 中每个字符出现的次数都相同，则称 s 和 t 互为字母异位词。
 
-````javascript
+```javascript
 /**
  * @param {string} s
  * @param {string} t
@@ -105,8 +105,8 @@ var isAnagram = function (s, t) {
     }
   }
   return true
-};
-````
+}
+```
 
 ### 验证回文串
 
@@ -114,30 +114,31 @@ var isAnagram = function (s, t) {
 
 **说明：**本题中，我们将空字符串定义为有效的回文串。
 
-````javascript
+```javascript
 /**
  * @param {string} s
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-    s = s.replace(/[^a-z0-9A-Z]/g, '').toLocaleLowerCase()
-    let i = 0, j = s.length - 1
-    while (i < j) {
-        if (s.charAt(i) !== s.charAt(j)) {
-            return false
-        }
-        i++
-        j--
+  s = s.replace(/[^a-z0-9A-Z]/g, '').toLocaleLowerCase()
+  let i = 0,
+    j = s.length - 1
+  while (i < j) {
+    if (s.charAt(i) !== s.charAt(j)) {
+      return false
     }
-    return true
-};
-````
+    i++
+    j--
+  }
+  return true
+}
+```
 
 ### 字符串转换整数 (atoi)
 
-请你来实现一个 myAtoi(string s) 函数，使其能将字符串转换成一个 32 位有符号整数（类似 C/C++ 中的 atoi 函数）。
+请你来实现一个  myAtoi(string s)  函数，使其能将字符串转换成一个 32 位有符号整数（类似 C/C++ 中的 atoi 函数）。
 
-函数 myAtoi(string s) 的算法如下：
+函数  myAtoi(string s) 的算法如下：
 
 读入字符串并丢弃无用的前导空格
 检查下一个字符（假设还未到字符末尾）为正还是负号，读取该字符（如果有）。 确定最终结果是负数还是正数。 如果两者都不存在，则假定结果为正。
@@ -146,16 +147,16 @@ var isPalindrome = function (s) {
 如果整数数超过 32 位有符号整数范围 [−231,  231 − 1] ，需要截断这个整数，使其保持在这个范围内。具体来说，小于 −231 的整数应该被固定为 −231 ，大于 231 − 1 的整数应该被固定为 231 − 1 。
 返回整数作为最终结果。
 
-[题链]:https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnoilh/
+[题链]: https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/xnoilh/
 
-````javascript
+```javascript
 /**
  * @param {string} s
  * @return {number}
  */
 var myAtoi = function (s) {
   s = s.trimStart()
-  let pre = ""
+  let pre = ''
   if (/\-|\+/.test(s.charAt(0))) {
     pre = s.charAt(0)
   } else if (/[a-z]/i.test(s.charAt(0))) {
@@ -176,12 +177,12 @@ var myAtoi = function (s) {
     }
   }
   return parseInt(pre + num)
-};
-````
+}
+```
 
 ### 实现 strStr()
 
-给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回  -1 。
+给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回 -1 。
 
 ```javascript
 /**
@@ -190,11 +191,11 @@ var myAtoi = function (s) {
  * @return {number}
  */
 //如下为暴力解法
-function isSame(me,him,hisIndex) {
+function isSame(me, him, hisIndex) {
   for (let m = 0; m < me.length; m++) {
-     if (me[m] != him[hisIndex + m]) {
-       return false
-     }
+    if (me[m] != him[hisIndex + m]) {
+      return false
+    }
   }
   return true
 }
@@ -205,17 +206,88 @@ var strStr = function (haystack, needle) {
   if (needle.length > haystack.length) {
     return -1
   }
-  let h = 0;
+  let h = 0
   while (h < haystack.length) {
     if (haystack[h] == needle[0]) {
-      if (isSame(needle,haystack, h)) {
+      if (isSame(needle, haystack, h)) {
         return h
       }
     }
     h++
   }
   return -1
-};
-
+}
 ```
 
+### 外观数列
+
+给定一个正整数 n ，输出外观数列的第 n 项。
+「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。
+
+```javascript
+/**
+ * @param {number} n
+ * @return {string}
+ */
+
+var countAndSay = function (n) {
+  let res = '1'
+  let no = 1
+  while (no < parseInt(n)) {
+    res = readNum(res)
+    no++
+  }
+  return res
+}
+function readNum(str) {
+  let res = ''
+  let i = 0
+  while (i < str.length) {
+    let n = 1
+    while (str.charAt(i) == str.charAt(i + n) && i + n < str.length) {
+      n++
+    }
+    res += n + str.charAt(i)
+    i += n
+  }
+  return res
+}
+```
+
+### 最长公共前缀
+
+编写一个函数来查找字符串数组中的最长公共前缀。
+如果不存在公共前缀，返回空字符串 ""。
+
+```javascript
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+  if (strs[0].length == 0) {
+    return ''
+  }
+  if (strs.length == 1) {
+    return strs[0]
+  }
+  let i = 0
+  let flag = true
+  while (flag) {
+    let temp = strs[0][i]
+    if (temp) {
+      for (let j = 0; j < strs.length; j++) {
+        if (strs[j][i] !== temp) {
+          flag = false
+        }
+      }
+      if (flag) {
+        i++
+      }
+    } else {
+      flag = false
+    }
+  }
+  return strs[0].slice(0, i)
+}
+```
