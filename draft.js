@@ -1,36 +1,37 @@
-var str = '5'
-/**
- * @param {number} n
- * @return {string}
- */
-var countAndSay = function (n) {
-    if (parseInt(n) === 1) {
-        return '1'
-    }
-    let res = "11"
-    let no = 2
-    while (no < parseInt(n)) {
-        res = readNum(res)
-        no ++
-    }
-    return res
-};
-function readNum(str) {
-    let res = ''
-    let i = 0
-    while (i < str.length) {
-        let n = 1
-        console.log(str.charAt(i) !== str.charAt(i + n))
-        while (str.charAt(i) == str.charAt(i + n) && i + n < str.length) {
-            n++
-        }
-        res += n + str.charAt(i)
-        console.log('res', res)
-        i += n
-    }
-    return res
-}
 
-let res = countAndSay(str)
-// let res = readNum('11')
-console.log(res)
+function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+}
+// let five = new ListNode(5)
+// let four = new ListNode(4, five)
+let three = new ListNode(3)
+let two = new ListNode(2, three)
+let one = new ListNode(1, two)
+console.log(one)
+
+var reverseList = function (head) {
+    let pre = null
+    let cur = head
+    console.log('cur1',cur)
+    while (cur) {
+        const next = cur.next
+        console.log('next',next)
+        cur.next = pre
+        console.log('cur2',cur)
+        pre = cur
+        console.log('pre',pre)
+        cur = next
+        console.log('cur3',cur)
+        if(cur){
+            console.log(cur.next)
+        }
+        if(pre){
+            console.log('pre.next',pre.next)
+        }
+    }
+    return pre
+};
+// reverseList(one)
+// console.log('one',one)
+console.log(reverseList(one))
