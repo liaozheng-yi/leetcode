@@ -133,5 +133,55 @@ var mergeTwoLists = function (l1, l2) {
 };
 ````
 
+### 回文链表
 
+给你一个单链表的头节点 `head` ，请你判断该链表是否为回文链表。如果是，返回 `true` ；否则，返回 `false` 。
+
+````javascript
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+function countLength(head) {
+  let cur = head
+  let length = 0
+  while (cur !== null) {
+    length++
+    cur = cur.next
+  }
+  return length
+}
+var isPalindrome = function (head) {
+  const length = countLength(head)
+  let cur = head
+  let forward
+  for (let i = 1; i <= parseInt(length / 2); i++) {
+    cur.next.prev = cur
+    cur = cur.next
+  }
+  if (length % 2 == 1) {
+    forward = cur.prev
+    cur = cur.next
+  } else {
+    forward = cur.prev
+  }
+  let flag = true
+  for (let i = 1; i <= parseInt(length / 2); i++) {
+    if (forward.val !== cur.val) {
+      return false
+    } else {
+      forward = forward.prev
+      cur = cur.next
+    }
+  }
+  return flag
+};
+````
 
