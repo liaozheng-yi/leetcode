@@ -56,14 +56,16 @@ var maxProfit = function (prices) {
 /**
  * @param {number[]} nums
  * @return {number}
+ * forwardSub是一直向前蠕动的范围，只对比当前值和当前范围，用于一直向前查找。
+ * maxSub用于保存forwardSub向前查找过程中的最大一个范围总和
  */
 var maxSubArray = function (nums) {
-  let pre = 0, maxSum = nums[0];
-    nums.forEach((x) => {
-        pre = Math.max(pre + x, x);
-        maxSum = Math.max(maxSum, pre);
-    });
-    return maxSum;
+  let forwardSub = 0, maxSub = nums[0]
+  nums.forEach(x => {
+    forwardSub = Math.max(forwardSub + x, x)
+    maxSub = Math.max(maxSub, forwardSub)
+  })
+  return maxSub
 };
 ````
 
