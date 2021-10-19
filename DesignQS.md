@@ -43,3 +43,45 @@ class Solution {
  * var param_2 = obj.shuffle()
  */
 ````
+
+### 最小栈
+
+设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
+
+push(x) —— 将元素 x 推入栈中。
+pop() —— 删除栈顶的元素。
+top() —— 获取栈顶元素。
+getMin() —— 检索栈中的最小元素。
+
+````javascript
+class MinStack {
+  constructor() {
+    this.stack = []
+    this.minStack = [Infinity]
+  }
+  push(x) {
+    this.stack.unshift(x)
+    this.minStack.unshift(Math.min(this.minStack[0], x))
+  }
+  pop() {
+    this.stack.shift()
+    this.minStack.shift()
+  }
+  top() {
+    return this.stack[0]
+  }
+  getMin() {
+    return this.minStack[0]
+  }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(val)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
+````
+
