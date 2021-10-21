@@ -31,3 +31,27 @@ var fizzBuzz = function (n) {
 };
 ````
 
+### 计算质数
+
+统计所有小于非负整数 *`n`* 的质数的数量。
+
+````javascript
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var countPrimes = function(n) {
+  let isPrime = new Array(n).fill(1)
+  let result = 0
+  for(let i = 2; i < n; ++i) {
+    if(isPrime[i]) {
+      result += 1
+      for(let j = i*i; j < n; j += i) {
+        isPrime[j] = 0
+      }
+    }
+  }
+  return result
+};
+````
+
