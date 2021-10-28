@@ -1,29 +1,19 @@
-## 加餐
+### 位1的个数
 
-### 全排列算法
-
-给定一个不含重复数字的数组 `nums` ，返回其 **所有可能的全排列** 。你可以 **按任意顺序** 返回答案。
+编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 '1' 的个数（也被称为[汉明重量](https://baike.baidu.com/item/汉明重量)）。
 
 ````javascript
 /**
- * @param {number[]} nums
- * @return {number[][]}
+ * @param {number} n - a positive integer
+ * @return {number}
  */
-var permute = function (nums) {
-  let result = []
-  function arrange(doneArr, undoneArr) {
-    if (undoneArr.length === 0) {
-      result.push(doneArr)
-    } else {
-      undoneArr.forEach((num, index) => {
-        let nextUndoneArr = [].concat(undoneArr)
-        nextUndoneArr.splice(index, 1)
-        arrange(doneArr.concat(num), nextUndoneArr)
-      })
-    }
+var hammingWeight = function (n) {
+  let times = 0
+  while (n) {
+    n &= n - 1
+    ++times
   }
-  arrange([],nums)
-  return result
+  return times
 };
 ````
 
