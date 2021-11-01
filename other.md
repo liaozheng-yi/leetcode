@@ -59,3 +59,27 @@ var reverseBits = function(n) {
 };
 ````
 
+### 杨辉三角
+
+给定一个非负整数 *`numRows`，*生成「杨辉三角」的前 *`numRows`* 行。
+
+在「杨辉三角」中，每个数是它左上方和右上方的数的和。
+
+````javascript
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {
+  let result = []
+  for (let i = 0; i < numRows; ++i) {
+    let nums = new Array(i + 1).fill(1)
+    for (let k = 1; k < nums.length - 1; ++k) {
+      nums[k] = result[i - 1][k - 1] + result[i - 1][k]
+    }
+    result.push(nums)
+  }
+  return result;
+};
+````
+
