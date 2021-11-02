@@ -83,3 +83,35 @@ var generate = function (numRows) {
 };
 ````
 
+### 有效的括号
+
+给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+
+有效字符串需满足：
+
+1、左括号必须用相同类型的右括号闭合。
+2、左括号必须以正确的顺序闭合。
+
+````javascript
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+const map = new Map([
+  ['(', ')'],
+  ['[', ']'],
+  ['{', '}']
+])
+var isValid = function (s) {
+  let brackets = []
+  for (let i = 0; i < s.length; ++i) {
+    if (s.charAt(i) == map.get(brackets[brackets.length - 1])) {
+      brackets.pop()
+    } else {
+      brackets.push(s.charAt(i))
+    }
+  }
+  return brackets.length == 0
+};
+````
+
