@@ -273,7 +273,7 @@ function divisionInteger(x, y) {
 }
 ```
 
-### 旋转图像
+### [旋转图像](https://leetcode-cn.com/problems/rotate-image/)
 
 给定一个 n × n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转 90 度。
 
@@ -286,16 +286,17 @@ function divisionInteger(x, y) {
  */
 var rotate = function (matrix) {
     const xy_s = new Map()
-    const len = matrix.length - 1
+    // 先循环一次，记录位置
     matrix.forEach((y, yIndex) => {
         y.forEach((x, xIndex) => {
             xy_s.set(xIndex + '_' + yIndex, x)
         })
     })
+    // 根据旋转的90度进行取值赋值，例如：3x3矩阵，旋转后0_0的位置应该是0_2的数
+    const len = matrix.length - 1
     xy_s.forEach((value, key) => {
         const [x, y] = key.split('_')
         matrix[x][y] = xy_s.get(x + '_' + (len - y))
-
     })
 };
 ```
