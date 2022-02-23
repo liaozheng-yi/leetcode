@@ -56,3 +56,21 @@ function sortPush(nums, item) {
   return nums.length + 1
 }
 ```
+
+### 排列格式对比
+
+给定两组长度相同的数组,比较两组数组的排列格式是否相同,相同则返回true,不同则返回false
+比如 
+["a",1,"a",1],["b",2,"b",2]  两组数组的排列格式都为abab形式,返回true
+["c","c","c","e"],["f","f","2","g"]  第一组的格式为aaab,第二组的格式为aabc,返回false 
+
+```javascript
+/**
+ * @param {(number|string)[]} ary1
+ * @param {(number|string)[]} ary2
+ * @return {boolean}
+ */
+function isSameFormat(ary1, ary2) {
+  
+}
+```

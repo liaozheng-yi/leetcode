@@ -1,20 +1,17 @@
-// let nums = [2, 7, 8, 9, 10]
-// let target = 6
-let nums = [1, 2, 4, 5]
-let target = 6
-function sortPush(nums, item) {
-    let isHave = nums.findIndex(e => e === item)
-    if (isHave > -1) {
-        return isHave
-    }
-    for (let i = 0; i < nums.length; i++) {
-        if (item < nums[i] ) {
-            nums.splice(i , 0, item)
-            return i 
+let ary1 = ["c","c","c","e"]
+let ary2 = ["f","f","2","g"]
+function isSameFormat(ary1, ary2) {
+  let mapping = {}
+  for (let i = 0; i < ary1.length; i++) {
+      if(ary1[i] in mapping) {
+        if(ary2[i] !== mapping[ary1[i]]) {
+            return false
         }
-    }
-    nums.splice(nums.length, 0 , item)
-    return nums.length + 1
+      } else {
+        mapping[ary1[i]] = ary2[i]
+      }
+  }
+  return true
 }
-const index = sortPush(nums, target)
-console.log(nums, index);
+const result = isSameFormat(ary1, ary2)
+console.log(result);
