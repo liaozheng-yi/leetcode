@@ -1,6 +1,9 @@
-let ary1 = ["c","c","c","e"]
-let ary2 = ["f","f","2","g"]
+let ary1 = ["j","1","j","2","c","c","a"]
+let ary2 = ["b","3","b","4","l","l","i"]
 function isSameFormat(ary1, ary2) {
+  if(ary1.length !== ary2.length) {
+    return false
+  }
   let mapping = {}
   for (let i = 0; i < ary1.length; i++) {
       if(ary1[i] in mapping) {

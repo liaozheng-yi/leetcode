@@ -29,6 +29,9 @@ var permute = function (nums) {
 
 给定一组顺序数组和一个数字，若数组中存在该数字，则返回该索引值，
 如果不存在，则按顺序插入数组，并返回数组和插入的索引值。
+
+你需要原地修改该数组，不能产生新数组。
+
 比如 [1,2,4,5] 6 返回[1,2,4,5,6] 索引值 4
 [1,3,5,7] 3 返回 索引值 1
 [2,7,8,9,10] 8 返回 索引值 2
@@ -52,17 +55,18 @@ function sortPush(nums, item) {
       return i
     }
   }
-  nums.splice(nums.length, 0, item)
+  nums.push(item)
   return nums.length + 1
 }
 ```
 
 ### 排列格式对比
 
-给定两组长度相同的数组,比较两组数组的排列格式是否相同,相同则返回true,不同则返回false
-比如 
-["a",1,"a",1],["b",2,"b",2]  两组数组的排列格式都为abab形式,返回true
-["c","c","c","e"],["f","f","2","g"]  第一组的格式为aaab,第二组的格式为aabc,返回false 
+给定两组长度不同的数组,比较两组数组的排列格式是否相同,相同则返回 true,不同则返回 false
+比如
+["a",1,"a",1],["b",2,"b",2] 两组数组的排列格式都为 abab 形式,返回 true
+["c","c","c","e"],["f","f","2","g"] 第一组的格式为 aaab,第二组的格式为 aabc,返回 false
+["j","1","j","2","c","c","a"],["b","3","b","4","l","l","i","a"] 第一组长度及格式与第二组不同，返回 false
 
 ```javascript
 /**
@@ -71,6 +75,19 @@ function sortPush(nums, item) {
  * @return {boolean}
  */
 function isSameFormat(ary1, ary2) {
-  
+  if (ary1.length !== ary2.length) {
+    return false
+  }
+  let mapping = {}
+  for (let i = 0; i < ary1.length; i++) {
+    if (ary1[i] in mapping) {
+      if (ary2[i] !== mapping[ary1[i]]) {
+        return false
+      }
+    } else {
+      mapping[ary1[i]] = ary2[i]
+    }
+  }
+  return true
 }
 ```
